@@ -15,6 +15,16 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @can('see-reports')
+                        <x-nav-link :href="route('reports')" :active="request()->routeIs('reports')">
+                            {{ __('Reportes') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('register-attendance')
+                        <x-nav-link :href="route('register-attendance')" :active="request()->routeIs('register-attendance')">
+                            {{ __('Registrar Asistencia') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -70,6 +80,16 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @can('see-reports')
+                <x-responsive-nav-link :href="route('reports')" :active="request()->routeIs('reports')">
+                    {{ __('Reportes') }}
+                </x-responsive-nav-link>
+            @endcan
+            @can('register-attendance')
+                <x-responsive-nav-link :href="route('register-attendance')" :active="request()->routeIs('register-attendance')">
+                    {{ __('Registrar Asistencia') }}
+                </x-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->
