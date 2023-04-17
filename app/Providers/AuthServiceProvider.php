@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -21,5 +22,12 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::define('see-reports', fn (User $user) =>
+            $user->role == User::ROLE_ADMINISTRATOR
+        );
+
+        Gate::define('register-attendance', fn (User $user) =>
+            $user->role == User::ROLE_TEACHER
+        );
     }
 }
