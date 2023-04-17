@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,10 +29,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('reports', function () {
+        Gate::authorize('see-reports');
+
         return view('reports');
     })->name('reports');
 
     Route::get('register-attendance', function () {
+        Gate::authorize('register-attendance');
+
         return view('register-attendance');
     })->name('register-attendance');
 });
